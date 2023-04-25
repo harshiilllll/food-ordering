@@ -41,12 +41,12 @@ const cartSlice = createSlice({
       state.totalQuantity++;
 
       if (!existingItem) {
-        // ===== note: if you use just redux you should not mute state array instead of clone the state array, but if you use redux toolkit that will not a problem because redux toolkit clone the array behind the scene
+        // ===== note: if you use just redux you should not mute state array instead of clone the state array, but if you use redux toolkit that will not a problem because redux toolkit clone the array behind the sscene
 
         state.cartItems.push({
           id: newItem.id,
-          title: newItem.title,
-          image01: newItem.image01,
+          item_name: newItem.item_name,
+          image: newItem.image,
           price: newItem.price,
           quantity: 1,
           totalPrice: newItem.price,

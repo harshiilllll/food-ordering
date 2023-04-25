@@ -7,7 +7,8 @@ import { useDispatch } from "react-redux";
 import { cartActions } from "../../../store/shopping-cart/cartSlice";
 
 const CartItem = ({ item }) => {
-  const { id, item_name, price, image01, quantity, totalPrice } = item;
+  const { id, item_name, price, image, quantity, totalPrice } = item;
+  console.log(item);
 
   const dispatch = useDispatch();
 
@@ -17,7 +18,7 @@ const CartItem = ({ item }) => {
         id,
         item_name,
         price,
-        image01,
+        image,
       })
     );
   };
@@ -33,13 +34,13 @@ const CartItem = ({ item }) => {
   return (
     <ListGroupItem className="border-0 cart__item">
       <div className="cart__item-info d-flex gap-2">
-        <img src={image01} alt="product-img" />
+        <img src={image} alt="product-img" />
 
         <div className="cart__product-info w-100 d-flex align-items-center gap-4 justify-content-between">
           <div>
             <h6 className="cart__product-title">{item_name}</h6>
             <p className=" d-flex align-items-center gap-5 cart__product-price">
-              {quantity}x <span>${totalPrice}</span>
+              {quantity}x <span>₹{totalPrice}</span>
             </p>
             <div className=" d-flex align-items-center justify-content-between increase__decrease-btn">
               <span className="decrease__btn" onClick={decreaseItem}>

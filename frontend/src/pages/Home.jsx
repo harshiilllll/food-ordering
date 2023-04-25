@@ -16,7 +16,7 @@ import featureImg01 from "../assets/images/service-01.png";
 import featureImg02 from "../assets/images/service-02.png";
 import featureImg03 from "../assets/images/service-03.png";
 
-import products from "../assets/fake-data/products.js";
+// import products from "../assets/fake-data/products.js";
 
 import foodCategoryImg01 from "../assets/images/hamburger.png";
 import foodCategoryImg02 from "../assets/images/pizza.png";
@@ -50,6 +50,20 @@ const featureData = [
 ];
 
 const Home = () => {
+
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const getProducts = async () => {
+      const response = await fetch("http://localhost:4000/api/v1/menu");
+      const data = await response.json();
+      setProducts(data);
+    };
+    getProducts();
+  }, []);
+
+  console.log(products);
+
+
   const [category, setCategory] = useState("ALL");
   const [allProducts, setAllProducts] = useState(products);
 
@@ -66,17 +80,17 @@ const Home = () => {
       setAllProducts(products);
     }
 
-    if (category === "BURGER") {
+    if (category === "Fast Food") {
       const filteredProducts = products.filter(
-        (item) => item.category === "Burger"
+        (item) => item.category === "Fast Food"
       );
 
       setAllProducts(filteredProducts);
     }
 
-    if (category === "PIZZA") {
+    if (category === "South Indian") {
       const filteredProducts = products.filter(
-        (item) => item.category === "Pizza"
+        (item) => item.category === "South Indian"
       );
 
       setAllProducts(filteredProducts);
@@ -205,22 +219,22 @@ const Home = () => {
                 </button>
                 <button
                   className={`d-flex align-items-center gap-2 ${
-                    category === "BURGER" ? "foodBtnActive" : ""
+                    category === "Fast Food" ? "foodBtnActive" : ""
                   } `}
-                  onClick={() => setCategory("BURGER")}
+                  onClick={() => setCategory("Fast Food")}
                 >
                   <img src={foodCategoryImg01} alt="" />
-                  Burger
+                  Fast Food
                 </button>
 
                 <button
                   className={`d-flex align-items-center gap-2 ${
-                    category === "PIZZA" ? "foodBtnActive" : ""
+                    category === "South Indian" ? "foodBtnActive" : ""
                   } `}
-                  onClick={() => setCategory("PIZZA")}
+                  onClick={() => setCategory("South Indian")}
                 >
                   <img src={foodCategoryImg02} alt="" />
-                  Pizza
+                  South Indian
                 </button>
 
                 <button
